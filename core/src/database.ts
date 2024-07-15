@@ -4,14 +4,17 @@ import fsSync from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 const databasePrefix = 'data';
 
-export interface DatabaseOptions {
-  defualtData: object;
+export interface DatabaseOptions<Entity> {
+  defualtData: Entity[];
 }
 
-export class Database {
+export default class Database<Entity extends object & { id: string }> {
   private databasePath: string;
 
-  constructor(collectName: string, protected options?: DatabaseOptions) {
+  constructor(
+    collectName: string,
+    protected options?: DatabaseOptions<Entity>
+  ) {
     this.databasePath = path.join(databasePrefix, collectName + '.json');
   }
 
@@ -31,7 +34,7 @@ export class Database {
   async readAll() {
     await this.init();
     const data = await fs.readFile(this.databasePath, 'utf-8');
-    return JSON.parse(data) as any[];
+    return JSON.parse(data) as Entity[];
   }
 
   async read(id: string) {
@@ -39,13 +42,13 @@ export class Database {
     return data.find((item) => item.id === id);
   }
 
-  async update(input: any) {
+  async update(input: Entity) {
     const data = await this.readAll();
     const index = data.findIndex((item) => item.id === input.id);
     data[index] = {
       ...data[index],
       ...input,
-    } as any;
+    } as Entity;
     await fs.writeFile(this.databasePath, JSON.stringify(data, null, 2));
   }
 
@@ -56,13 +59,13 @@ export class Database {
     await fs.writeFile(this.databasePath, JSON.stringify(data, null, 2));
   }
 
-  async insert(input: Omit<any, 'id'>) {
+  async insert(input: Omit<Entity, 'id'>) {
     const data = await this.readAll();
     // Add a new change
     data.push({
       ...input,
       id: uuidv4(),
-    } as any);
+    } as Entity);
     await fs.writeFile(this.databasePath, JSON.stringify(data, null, 2));
   }
 }

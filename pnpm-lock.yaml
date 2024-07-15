@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      auto-bind:
+        specifier: ^v4.0.0
+        version: 4.0.0
       axios:
         specifier: ^1.6.0
         version: 1.7.2
@@ -23,6 +26,9 @@ importers:
       uuid:
         specifier: ^10.0.0
         version: 10.0.0
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@nx/esbuild':
         specifier: 19.4.3
@@ -1498,6 +1504,10 @@ packages:
 
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
+
+  auto-bind@4.0.0:
+    resolution: {integrity: sha512-Hdw8qdNiqdJ8LqT0iK0sVzkFbzg6fhnQqqfWhBDxcHZvU75+B+ayzTy8x+k5Ix0Y92XOhOUlx74ps+bA6BeYMQ==}
+    engines: {node: '>=8'}
 
   axios@1.7.2:
     resolution: {integrity: sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==}
@@ -3201,6 +3211,9 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
 snapshots:
 
@@ -5071,6 +5084,8 @@ snapshots:
   async@3.2.5: {}
 
   asynckit@0.4.0: {}
+
+  auto-bind@4.0.0: {}
 
   axios@1.7.2:
     dependencies:
@@ -7024,3 +7039,5 @@ snapshots:
   yn@3.1.1: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@3.23.8: {}
